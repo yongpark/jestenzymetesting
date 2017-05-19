@@ -25,13 +25,22 @@ describe('review form container', () => {
       ));
       reviewBody = reviewFormWrapper.find('textarea');
     });
-    
+
     test('pre-fills rating field to 5', () => {
       /* your code here */
+      expect(reviewRating.props().value).toEqual(5);
     });
 
     test('pre-fills comment field with empty string', () => {
       /* your code here */
+      expect(reviewBody.props().value.toEqual(''));
+    });
+
+    test('rating onChange method updates correctly', () => {
+      expect(reviewRating.props().value).toEqual('5');
+      reviewRating.simulated('change', {target: { value: '4' }});
+      expect(reviewRating.props().value).toEqual('4');
+      //reviewFormWrapper.node.state to access state
     });
   });
 
